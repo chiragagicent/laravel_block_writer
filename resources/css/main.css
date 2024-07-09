@@ -1,0 +1,270 @@
+body {
+    background: rgb(253, 253, 253);
+    height: 100%;
+
+    font-family: "Monteserrat";
+}
+
+#editorjs {
+    background: white;
+    width: 100%;
+    font-size: x-large;
+    padding: 3px;
+}
+
+button {
+    background: rgb(0, 128, 62);
+    color: white;
+    border: none;
+    border-radius: 30px;
+    text-transform: uppercase;
+    padding: 1em;
+    margin-top: 2em;
+}
+
+#Navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: start;
+    padding: 1px;
+    background-color: rgb(255, 255, 255);
+}
+
+.ce-toolbar__plus {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.945);
+    background-color: #ffffffab;
+    color: #000;
+    font-size: 18px;
+    font-weight: 300;
+    transition: background-color 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.ce-toolbar__plus:hover {
+    background-color: #f0f0f0;
+    border-color: #bbb;
+}
+
+/* Custom CSS to style Editor.js tooltip */
+.ct__content {
+    position: relative;
+    display: inline-block;
+}
+
+/* Style for the tooltip itself */
+.ct__content::before {
+    content: "Tooltip text here";
+    visibility: hidden;
+    width: 200px; /* Width of the tooltip */
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 8px;
+    padding: 10px;
+    font-size: 14px;
+    line-height: 1.5;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 50%;
+    left: 125%;
+    transform: translateY(-50%);
+
+    /* Fade in transition */
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+/* Show the tooltip on hover */
+.ct__content:hover::before {
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Hide unwanted text or elements */
+.ct__content div:not(.ce-toolbar__plus-shortcut) {
+    display: none;
+}
+
+.ct__content::after {
+    content: "Add image, code, embed...";
+    visibility: visible;
+    opacity: 1;
+}
+
+/* Style for the items inside the toolbar */
+.ce-popover__items {
+    color: rgb(0, 128, 58, 0.95); /* Green background color */
+}
+
+/* Style for the icon inside each popover item */
+.ce-popover-item__icon svg {
+    color: rgb(0, 128, 58, 0.95); /* White fill color for the SVG icon */
+}
+
+/* Style for the title of each popover item */
+.ce-popover-item__title {
+    margin-left: 10px;
+    font-weight: bold;
+    color: rgb(0, 128, 58, 0.95);
+}
+
+.ce-toolbar__plus {
+    margin-right: 10px;
+    margin-bottom: 10px;
+    padding: 3px;
+}
+
+/* Editor.js Custom Styles */
+.ce-code-tool {
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: #f9f9f9;
+    margin-bottom: 10px;
+}
+
+.ce-code-tool__dropdown {
+    margin-bottom: 5px;
+    padding: 4px 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+    font-size: 14px;
+}
+
+.ce-code-tool__textarea {
+    width: 90%;
+    height: 100px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background-color: #fff;
+}
+
+.ce-code-tool__textarea:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px #66afe9;
+}
+
+.image-tool-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+.ce-image-tool {
+    max-width: 100%;
+}
+
+.ce-image-tool img {
+    max-width: 100%;
+    height: auto;
+}
+
+.ce-image-tool input[type="text"] {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 8px;
+    margin-top: 8px;
+}
+
+.ce-block__content {
+    position: relative;
+    max-width: 750px;
+    margin-left: 0 auto;
+    -webkit-transition: background-color 0.15s ease;
+    transition: background-color 0.15s ease;
+}
+
+.ce-toolbar__content {
+    max-width: 750px;
+    margin: 0 auto;
+    position: relative;
+}
+
+/* Example styles for video captions */
+.video-tool-wrapper {
+    position: relative;
+    max-width: 100%;
+    margin-bottom: 10px;
+}
+
+.video-tool-wrapper video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+.video-tool-caption {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 8px;
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    font-size: 14px;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+/* video captions */
+.caption-wrapper {
+    margin-top: 10px;
+    position: relative;
+    width: 60%;
+    margin-bottom: 10px;
+}
+
+.caption-wrapper input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    box-sizing: border-box;
+}
+
+.caption-wrapper input[type="text"]:focus {
+    outline: none;
+    border-color: #66afe9;
+    box-shadow: 0 0 5px #66afe9;
+}
+
+.caption-wrapper::before {
+    content: attr(data-placeholder);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: #aaa;
+    pointer-events: none;
+    transition: top 0.3s, font-size 0.3s;
+}
+
+.caption-wrapper input[type="text"]:focus + ::before {
+    top: -10px;
+    font-size: 12px;
+    color: #aaa;
+}
+/* for delimiter */
+
+.ce-delimiter {
+    font-weight: bold;
+    font-size: 30px;
+    color: black;
+    text-align: center;
+    justify-content: center;
+}
