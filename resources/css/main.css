@@ -226,13 +226,14 @@ button {
     position: relative;
     width: 60%;
     margin-bottom: 10px;
+    margin-left: 40%;
 }
 
 .caption-wrapper input[type="text"] {
     width: 100%;
     padding: 10px;
     font-size: 16px;
-    border: 1px solid #ccc;
+    border: #ccc;
     border-radius: 4px;
     transition: border-color 0.3s, box-shadow 0.3s;
     box-sizing: border-box;
@@ -240,8 +241,6 @@ button {
 
 .caption-wrapper input[type="text"]:focus {
     outline: none;
-    border-color: #66afe9;
-    box-shadow: 0 0 5px #66afe9;
 }
 
 .caption-wrapper::before {
@@ -267,4 +266,9 @@ button {
     color: black;
     text-align: center;
     justify-content: center;
+}
+
+.image-tool-dragover {
+    border: 2px dashed #007bff;
+    background-color: rgba(0, 123, 255, 0.1);
 }

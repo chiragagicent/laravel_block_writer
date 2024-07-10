@@ -87,7 +87,7 @@ class VideoTool {
 
         this.captionInput = document.createElement("input");
         this.captionInput.type = "text";
-        this.captionInput.placeholder = "Enter caption";
+        this.captionInput.placeholder = "Enter caption (Optional)";
         this.captionInput.value = this.data.caption || "";
         this.captionInput.addEventListener("input", () => {
             this.data.caption = this.captionInput.value;
@@ -101,17 +101,29 @@ class VideoTool {
                 this.api.blocks.delete();
             } else if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault();
-                const currentBlockIndex =
-                    this.api.blocks.getCurrentBlockIndex();
-                const nextBlockIndex = currentBlockIndex + 1;
-                const nextBlock =
-                    this.api.blocks.getBlockByIndex(nextBlockIndex);
+                if (!this.captionInput.value.trim()) {
+                    this.captionInput.placeholder = "";
+                    const currentBlockIndex =
+                        this.api.blocks.getCurrentBlockIndex(); //try to get index block using apis of editorJS for editing
+
+                    const nextBlockIndex = currentBlockIndex + 1;
+                    const nextBlock =
+                        this.api.blocks.getBlockByIndex(nextBlockIndex);
+                    if (nextBlock) {
+                        this.api.caret.setToBlock(nextBlockIndex, "end");
+                    }
+                }
                 if (exists1) {
                     this.api.blocks.delete();
                     exists1 = false;
                 } else {
                     console.log("yes");
                 }
+            }
+        });
+        this.captionInput.addEventListener("focus", () => {
+            if (!this.captionInput.value.trim()) {
+                this.captionInput.placeholder = "Enter caption (Optional)";
             }
         });
 

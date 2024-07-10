@@ -84,7 +84,7 @@ class ImageTool {
 
         this.captionInput = document.createElement("input");
         this.captionInput.type = "text";
-        this.captionInput.placeholder = "Enter caption";
+        this.captionInput.placeholder = "Enter caption (Optional)";
         this.captionInput.value = this.data.caption || "";
         this.captionInput.addEventListener("input", () => {
             this.data.caption = this.captionInput.value;
@@ -96,25 +96,33 @@ class ImageTool {
             ) {
                 event.preventDefault();
                 this.api.blocks.delete();
-            } /* else if (event.key === "Enter") {
-        if (this.captionInput.selectionStart === 0) {
-          event.preventDefault();
-        }
-      } */ else if (event.key === "Enter" && !event.shiftKey) {
+            } else if (event.key === "Enter" && !event.shiftKey) {
                 event.preventDefault(); // Prevent default Enter behavior
 
-                const currentBlockIndex =
-                    this.api.blocks.getCurrentBlockIndex(); //try to get index block using apis of editorJS for editing
+                if (!this.captionInput.value.trim()) {
+                    this.captionInput.placeholder = "";
+                    const currentBlockIndex =
+                        this.api.blocks.getCurrentBlockIndex(); //try to get index block using apis of editorJS for editing
 
-                const nextBlockIndex = currentBlockIndex + 1;
-                const nextBlock =
-                    this.api.blocks.getBlockByIndex(nextBlockIndex);
+                    const nextBlockIndex = currentBlockIndex + 1;
+                    const nextBlock =
+                        this.api.blocks.getBlockByIndex(nextBlockIndex);
+                    if (nextBlock) {
+                        this.api.caret.setToBlock(nextBlockIndex, "end");
+                    }
+                }
+
                 if (exists) {
                     this.api.blocks.delete();
                     exists = false;
                 } else {
                     console.log("yes");
                 }
+            }
+        });
+        this.captionInput.addEventListener("focus", () => {
+            if (!this.captionInput.value.trim()) {
+                this.captionInput.placeholder = "Enter caption (Optional)";
             }
         });
 
@@ -137,44 +145,6 @@ class ImageTool {
 
     validate(savedData) {
         return !!savedData.url;
-    }
-
-    static get pasteConfig() {
-        return {
-            tags: ["img"],
-            files: {
-                mimeTypes: ["image/*"],
-                extensions: ["gif", "jpg", "png"], // You can specify extensions instead of mime-types
-            },
-            patterns: {
-                image: /https?:\/\/\S+\.(gif|jpe?g|tiff|png)$/i,
-            },
-        };
-    }
-    onPaste(event) {
-        switch (event.type) {
-            case "tag":
-                const imgTag = event.detail.data;
-
-                this._createImage(imgTag.src);
-                break;
-            case "file":
-                /* We need to read file here as base64 string */
-                const file = event.detail.file;
-                const reader = new FileReader();
-
-                reader.onload = (loadEvent) => {
-                    this._createImage(loadEvent.target.result);
-                };
-
-                reader.readAsDataURL(file);
-                break;
-            case "pattern":
-                const src = event.detail.data;
-
-                this._createImage(src);
-                break;
-        }
     }
 
     static get sanitize() {

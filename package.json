@@ -16,6 +16,7 @@
         "@editorjs/embed": "^2.7.4",
         "@editorjs/header": "^2.8.5",
         "@editorjs/list": "^1.9.0",
-        "@editorjs/paragraph": "^2.11.6"
+        "@editorjs/paragraph": "^2.11.6",
+        "editorjs-html": "^3.4.3"
     }
 }
