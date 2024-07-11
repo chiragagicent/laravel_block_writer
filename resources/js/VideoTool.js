@@ -1,4 +1,4 @@
-var exists1 = true;
+var exist = true;
 
 class VideoTool {
     constructor({ data, api }) {
@@ -38,6 +38,7 @@ class VideoTool {
     }
 
     triggerFileInput() {
+        exist = true;
         this.fileInput = document.createElement("input");
         this.fileInput.type = "file";
         this.fileInput.accept = "video/*";
@@ -103,7 +104,7 @@ class VideoTool {
                 event.preventDefault();
                 if (!this.captionInput.value.trim()) {
                     this.captionInput.placeholder = "";
-                    const currentBlockIndex =
+                    /*  const currentBlockIndex =
                         this.api.blocks.getCurrentBlockIndex(); //try to get index block using apis of editorJS for editing
 
                     const nextBlockIndex = currentBlockIndex + 1;
@@ -111,11 +112,12 @@ class VideoTool {
                         this.api.blocks.getBlockByIndex(nextBlockIndex);
                     if (nextBlock) {
                         this.api.caret.setToBlock(nextBlockIndex, "end");
-                    }
+                    } */
                 }
-                if (exists1) {
+                if (exist) {
+                    console.log("exists");
                     this.api.blocks.delete();
-                    exists1 = false;
+                    exist = false;
                 } else {
                     console.log("yes");
                 }

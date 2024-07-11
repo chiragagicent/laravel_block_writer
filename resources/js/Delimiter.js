@@ -13,7 +13,7 @@ class Delimiter {
     render() {
         this.wrapper = document.createElement("div");
         this.wrapper.classList.add("ce-delimiter");
-        this.wrapper.textContent = ".   .   .";
+        this.wrapper.textContent = ". . . . . . .";
 
         return this.wrapper;
     }
